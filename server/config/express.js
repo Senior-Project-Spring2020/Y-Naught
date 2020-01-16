@@ -2,7 +2,12 @@ const path = require('path'),
     express = require('express'),
     mongoose = require('mongoose'),
     morgan = require('morgan'),
+<<<<<<< HEAD
     bodyParser = require('body-parser');
+=======
+    bodyParser = require('body-parser'),
+    productRoute = require('../routes/ProductRoute');
+>>>>>>> 392ef3ee1fd4dc3f03a7a82978025357ee4756bf
 
 module.exports.init = () => {
     /* 
@@ -25,7 +30,11 @@ module.exports.init = () => {
     app.use(bodyParser.json());
 
     // add a router
+<<<<<<< HEAD
     app.use('/', './routes/example');
+=======
+    app.use('/products', productRoute);
+>>>>>>> 392ef3ee1fd4dc3f03a7a82978025357ee4756bf
 
     if (process.env.NODE_ENV === 'production') {
         // Serve any static files
