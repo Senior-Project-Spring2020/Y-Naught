@@ -2,8 +2,7 @@ const path = require('path'),
     express = require('express'),
     mongoose = require('mongoose'),
     morgan = require('morgan'),
-    bodyParser = require('body-parser'),
-    exampleRouter = require('../routes/examples.server.routes');
+    bodyParser = require('body-parser');
 
 module.exports.init = () => {
     /* 
@@ -26,14 +25,14 @@ module.exports.init = () => {
     app.use(bodyParser.json());
 
     // add a router
-    app.use('/api/example', exampleRouter);
+    app.use('/', './routes/example');
 
     if (process.env.NODE_ENV === 'production') {
         // Serve any static files
         app.use(express.static(path.join(__dirname, '../../client/build')));
 
         // Handle React routing, return all requests to React app
-        app.get('*', function(req, res) {
+        app.get('*', function (req, res) {
             res.sendFile(path.join(__dirname, '../../client/build', 'index.html'));
         });
     }
