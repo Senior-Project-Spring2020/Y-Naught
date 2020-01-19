@@ -3,6 +3,7 @@ const path = require('path'),
     mongoose = require('mongoose'),
     morgan = require('morgan'),
     bodyParser = require('body-parser');
+    users = require('../routes/Users')
 
 module.exports.init = () => {
     /* 
@@ -31,7 +32,8 @@ module.exports.init = () => {
     // add a router
 
     app.use('/example', require('../routes/example'));
-
+    app.use('/users', users);
+    
     if (process.env.NODE_ENV === 'production') {
         // Serve any static files
         app.use(express.static(path.join(__dirname, '../../client/build')));
