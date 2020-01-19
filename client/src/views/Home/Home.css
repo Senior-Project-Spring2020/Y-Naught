@@ -4,7 +4,7 @@ body {
 
 .App {
     text-align: center;
-    background: #282c34;
+    background: black;
 }
 
 .App-logo {
@@ -12,7 +12,7 @@ body {
 }
 
 .App-header {
-    background-color: #282c34;
+    background-color: black;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -22,6 +22,3 @@ body {
     color: white;
 }
 
-.App-link {
-    color: #09d3ac;
-}
