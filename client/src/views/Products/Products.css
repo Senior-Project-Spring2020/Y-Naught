@@ -2,7 +2,7 @@ body {
     margin: 0;
 }
 
-.App {
+.Products {
     text-align: center;
     background: black;
 }
@@ -11,7 +11,7 @@ body {
     height: 40vmin;
 }
 
-.App-header {
+.Products-header {
     background-color: black;
     min-height: 100vh;
     display: flex;

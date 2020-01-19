@@ -5,7 +5,11 @@ var ProductSchema = new Schema({
 
     name: { type: Date, required: true },
     price: { type: String, required: true },
-    size: String
+    size: String,
+    brand: { type: String, required: true },
+    era: { type: String, required: true },
+    width: { type: String, required: true },
+    length: { type: String, required: true }
 
 });
 
