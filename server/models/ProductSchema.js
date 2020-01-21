@@ -4,14 +4,18 @@ var mongoose = require('mongoose'),
 var ProductSchema = new Schema({
 	name: { type: Date, required: true },
 	price: { type: String, required: true },
-	size: { type: String, required: true },
-	brand: { type: String, required: true },
-	era: { type: String, required: true },
-	width: { type: String, required: true },
-	length: { type: String, required: true }
+	size: String,
+	brand: String,
+	era: String,
+	width: String,
+	length: String,
+	description: String,
+	productID: { type: String, required: true },
+	image: { type: String, required: true }
+
 });
 
-ProductSchema.pre('save', function(next) {
+ProductSchema.pre('save', function (next) {
 	var currentDate = new Date();
 	this.updated_at = currentDate;
 	if (!this.created_at) {
