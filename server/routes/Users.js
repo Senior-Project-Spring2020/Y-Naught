@@ -6,8 +6,10 @@ router.route('/')
     .get(Users.list)
     .post(Users.create);
 
-router.route('/:userID')
+router.route('/:userId')
+    .get(Users.read)
     .put(Users.update)
     .delete(Users.delete);
 
+router.param('userId', Users.userByID);
 module.exports = router;

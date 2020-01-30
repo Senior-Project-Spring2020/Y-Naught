@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+    Schema = mongoose.Schema,
+    bcrypt = require('bcrypt');
 
 var userSchema = new Schema({
 
@@ -9,6 +10,7 @@ var userSchema = new Schema({
 
 });
 
-//Create mongoose model for database
-var User = mongoose.model('User', userSchema);
-module.exports = User
+
+    //Create mongoose model for database
+    var User = mongoose.model('User', userSchema);
+    module.exports = User;
