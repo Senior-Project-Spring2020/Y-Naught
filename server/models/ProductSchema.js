@@ -12,7 +12,8 @@ var ProductSchema = new Schema({
 	width: String,
 	length: String,
 	description: String,
-	image: String
+	image: String,
+	available: Boolean
 
 });
 
