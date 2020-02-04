@@ -4,7 +4,7 @@ const express = require('express'),
     { check, validationResult } = require('express-validator');
 
 // @route   POST /Products
-// @desc    Create new product
+// @desc    Create new product or update existing
 // @access  Public
 
 router.post('/:id?', [
@@ -70,4 +70,52 @@ router.post('/:id?', [
         }
     }
 );
+// @route    GET /Products
+// @desc     Get all products
+// @access   Public
+router.get('/', async (req, res) => {
+    try {
+        const products = await Product.find();
+        res.json(products);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+// @route    GET Products/:product_id/
+// @desc     Get product by product id
+// @access   Public
+router.get('/:product_id', async (req, res) => {
+    try {
+        const product = await Product.findOne({
+            _id: req.params.product_id
+        });
+
+        if (!product) return res.status(400).json({ msg: 'Product not found' });
+
+        res.json(product);
+    } catch (err) {
+        console.error(err.message);
+        if (err.kind == 'ObjectId') {
+            return res.status(400).json({ msg: 'Product not found' });
+        }
+        res.status(500).send('Server Error');
+    }
+});
+
+// @route    DELETE /Products
+// @desc     Delete product
+// @access   Private
+router.delete('/:id', async (req, res) => {
+    try {
+
+        await Product.findOneAndRemove({ _id: req.params.id });
+
+        res.json({ msg: 'Product deleted' });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
 module.exports = router;
