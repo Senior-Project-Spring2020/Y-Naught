@@ -3,5 +3,8 @@
   "workspaces": [
     "client",
     "server"
-  ]
+  ],
+  "dependencies": {
+    "react-bootstrap": "^1.0.0-beta.16"
+  }
 }

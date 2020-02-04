@@ -1,24 +1,22 @@
-body {
-    margin: 0;
+.products-box{
+    width: 100%;
+    margin:0;
+    padding: 0;
 }
 
-.Products {
-    text-align: center;
-    background: black;
-}
 
-.App-logo {
-    height: 40vmin;
-}
-
-.Products-header {
+.products-header {
     background-color: black;
-    min-height: 100vh;
+    min-height: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
+}
+
+.products {
+    text-align: center;
 }
 

@@ -1,23 +1,30 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import './NavBar.css';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import Container from 'react-bootstrap/Navbar'
+import logo from './Y-Naught_BlckOutline.png'
+// import NavLink from 'react-bootstrap/NavLink';
 
 const NavBar = () => {
     return (
         <div className = "header">
-            {/* Logo */}
-            <Link className = "nav-title" to="/">
-                {/* place Y-naught logo here as img */}
-            </Link>
-
-            {/* Page Links */}
-            <div className = "nav-items">
-                 <Link className = "nav-link" to='/Home'>Home</Link>
-                <Link className = "nav-link" to='/Products'>Products</Link>
-                <a className = "nav-link" target="_blank" rel="noopener noreferrer" href="https://reactjs.org/tutorial/tutorial.html">About</a>
-                <a className = "nav-link" target="_blank" rel="noopener norefferer" href="https://nodejs.org/en/docs/">Lookbook</a>
-            </div>
-
+            <Container className="navbar-head">
+                <Navbar className= "navbar navbar-custom">
+                    <a href="/home" className="navbar-left">    
+                        <img src={logo} alt="logo" width="60" height="60" className="logo"></img>
+                    </a>
+                    <Navbar.Brand className="brandName" href="/home">Y-Naught</Navbar.Brand>
+                    <Nav className="mr-auto">
+                        <Nav.Link href="/home">Home</Nav.Link>
+                        <Nav.Link href="/products">Products</Nav.Link>
+                        <Nav.Link href="/lookbook">Lookbook</Nav.Link>
+                        {/* <Nav.Link href="/login">Login</Nav.Link> */}
+                        <Nav.Link href="/register">Register</Nav.Link>
+                    </Nav>
+                </Navbar>
+            </Container>
         </div>
     )
 };
