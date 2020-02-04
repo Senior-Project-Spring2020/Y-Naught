@@ -107,10 +107,10 @@ router.get('/:product_id', async (req, res) => {
 // @route    DELETE /Products
 // @desc     Delete product
 // @access   Private
-router.delete('/:id', async (req, res) => {
+router.delete('/:product_id', async (req, res) => {
     try {
 
-        await Product.findOneAndRemove({ _id: req.params.id });
+        await Product.findOneAndRemove({ _id: req.params.product_id });
 
         res.json({ msg: 'Product deleted' });
     } catch (err) {
