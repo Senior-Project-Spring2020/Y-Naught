@@ -9,11 +9,11 @@ var ProductSchema = new Schema({
 	brand: String,
 	era: String,
 	width: String,
-	length: String,
+	lngth: String,
 	description: String,
-	image: String,
-	available: Boolean
-
+	available: Boolean,
+	imageName:{type: String, default:"none"},
+	imageData:{type:String}
 });
 
 ProductSchema.pre('save', function (next) {
