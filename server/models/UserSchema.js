@@ -1,16 +1,26 @@
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    bcrypt = require('bcrypt');
+    Schema = mongoose.Schema;
+
 
 var userSchema = new Schema({
-
-    username: { type: String, required: true, index: true },
-    password: { type: String, required: true, index: true },
-    email: { type: String, required: true, index: true }
-
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    date: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 
-    //Create mongoose model for database
-    var User = mongoose.model('User', userSchema);
-    module.exports = User;
+
+
+//Create mongoose model for database
+var User = mongoose.model('User', userSchema);
+module.exports = User;
