@@ -28,7 +28,8 @@ router.post('/:id?', [
             width,
             length,
             description,
-            image
+            image,
+            available
         } = req.body;
 
         //Build product object
@@ -43,6 +44,7 @@ router.post('/:id?', [
         if (length) productFields.length = length;
         if (description) productFields.description = description;
         if (image) productFields.image = image;
+        if (available) productFields.available = available;
 
         try {
 
