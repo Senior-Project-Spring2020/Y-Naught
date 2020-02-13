@@ -1,21 +1,23 @@
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+    Schema = mongoose.Schema,
+    product = require('../models/ProductSchema');
 
 var userSchema = new Schema({
 
     email: {
         type: String,
-        required: true,
         unique: true
     },
     password: {
         type: String,
-        required: true
     },
 
     date: {
         type: Date,
         default: Date.now
+    },
+    cart: {
+        items:[{ type: product, quantity: Number}]
     }
 });
 

@@ -4,7 +4,8 @@ const path = require('path'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     users = require('../routes/Users'),
-    products = require('../routes/Products');
+    products = require('../routes/Products'),
+    admin = require('../routes/Auth');
 
 module.exports.init = () => {
     /* 

@@ -13,7 +13,8 @@ var ProductSchema = new Schema({
 	description: String,
 	available: Boolean,
 	imageName:{type: String, default:"none"},
-	imageData:{type:String}
+	imageData:{type:String},
+	quantity: Number
 });
 
 ProductSchema.pre('save', function (next) {

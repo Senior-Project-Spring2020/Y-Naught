@@ -31,7 +31,8 @@ router.post('/:id?', [
             description,
             imageName,
             imageData,
-            available
+            available,
+            quantity
         } = req.body;
 
         //Build product object
@@ -48,6 +49,7 @@ router.post('/:id?', [
         if (imageData) productFields.imageData = imageData;
         if (imageName) productFields.imageName = imageName;
         if(available) productFields.available = available;
+        if(quantity) productFields.quantity = quantity;
         try {
 
             let product = await Product.findOne({ _id: req.params.id });
