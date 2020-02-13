@@ -1,25 +1,28 @@
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+	Schema = mongoose.Schema;
 
 var ProductSchema = new Schema({
 
-    name: { type: Date, required: true },
-    price: { type: String, required: true },
-    size: String,
-    brand: { type: String, required: true },
-    era: { type: String, required: true },
-    width: { type: String, required: true },
-    length: { type: String, required: true }
+	name: { type: String, required: true },
+	price: { type: String, required: true },
+	size: String,
+	brand: String,
+	era: String,
+	width: String,
+	length: String,
+	description: String,
+	image: String,
+	available: Boolean
 
 });
 
 ProductSchema.pre('save', function (next) {
-    var currentDate = new Date();
-    this.updated_at = currentDate;
-    if (!this.created_at) {
-        this.created_at = currentDate;
-    }
-    next();
+	var currentDate = new Date();
+	this.updated_at = currentDate;
+	if (!this.created_at) {
+		this.created_at = currentDate;
+	}
+	next();
 });
 
 //Create mongoose model for database
