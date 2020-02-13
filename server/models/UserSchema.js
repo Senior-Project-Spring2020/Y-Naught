@@ -17,7 +17,7 @@ var userSchema = new Schema({
         default: Date.now
     },
     cart: {
-        items:[{ type: product, quantity: Number}]
+        items:[{ type: Schema.Types.Mixed, quantity: Number}]
     }
 });
 

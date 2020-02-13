@@ -37,6 +37,7 @@ module.exports.init = () => {
 
     app.use('/users', users);
     app.use('/products', products);
+    app.use('/admin', admin);
 
     if (process.env.NODE_ENV === 'production') {
         // Serve any static files
