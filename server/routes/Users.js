@@ -72,4 +72,26 @@ router.post(
     }
 );
 
+// @route    GET api/users
+// @desc     Display all users
+// @access   Private
+
+router.get('/:user_id', async (req, res) => {
+    try {
+        const user = await User.findOne({
+            _id: req.params.user_id
+        });
+
+        if (!user) return res.status(400).json({ msg: 'User not found' });
+
+        res.json(user);
+    } catch (err) {
+        console.error(err.message);
+        if (err.kind == 'ObjectId') {
+            return res.status(400).json({ msg: 'User not found' });
+        }
+        res.status(500).send('Server Error');
+    }
+});
+
 module.exports = router;

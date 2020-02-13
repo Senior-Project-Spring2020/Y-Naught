@@ -1,26 +1,24 @@
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+    Schema = mongoose.Schema,
+    product = require('../models/ProductSchema');
 
+var UserSchema = new Schema({
 
-var userSchema = new Schema({
     email: {
         type: String,
-        required: true,
         unique: true
     },
     password: {
         type: String,
-        required: true
     },
+
     date: {
         type: Date,
         default: Date.now
+    },
+    cart: {
+        items: [{ type: Schema.Types.Mixed, quantity: Number }]
     }
 });
 
-
-
-
-//Create mongoose model for database
-var User = mongoose.model('User', userSchema);
-module.exports = User;
+module.exports = User = mongoose.model('user', UserSchema);
