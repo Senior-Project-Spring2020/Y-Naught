@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     product = require('../models/ProductSchema');
 
-var userSchema = new Schema({
+var UserSchema = new Schema({
 
     email: {
         type: String,
