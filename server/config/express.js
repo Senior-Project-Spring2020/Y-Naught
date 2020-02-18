@@ -4,7 +4,8 @@ const path = require('path'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     users = require('../routes/Users'),
-    products = require('../routes/Products');
+    products = require('../routes/Products'),
+    admin = require('../routes/Auth');
 
 module.exports.init = () => {
     /* 
@@ -36,6 +37,7 @@ module.exports.init = () => {
 
     app.use('/users', users);
     app.use('/products', products);
+    app.use('/admin', admin);
 
     if (process.env.NODE_ENV === 'production') {
         // Serve any static files
