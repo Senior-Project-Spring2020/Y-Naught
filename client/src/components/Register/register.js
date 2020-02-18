@@ -1,15 +1,20 @@
 import React, { Fragment, useState } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+//import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { setAlert } from '../../actions/alert';
+import { registerFunc } from '../../actions/auth';
+import PropTypes from 'prop-types';
+// import './register.css';
 
-const Register = () => {
+const Register = (setAlert, registerFunc) => {
     const[formData, setFormData] = useState({
-        name: '',
         email: '',
         password: '',
         password2: ''
     });
 
-    const { name, email, password, password2 } = formData;
+    const { email, password, password2 } = formData;
 
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
 
@@ -17,24 +22,11 @@ const Register = () => {
         e.preventDefault();
         if(password !== password2){
             console.log("Passwords do not match");
-        }else{
-            const newUser = {
-                name,
-                email,
-                password
-            }; 
-            try {
-                const config = {
-                    'Content-Type': 'application/json'
-                }
-                const body = JSON.stringify(newUser);
-
-                const res = await axios.post('/api/users', body, config);
-                console.log(res.data);
-            } catch (err) {
-                console.error(err.response.data);
-            }
+        }else{ 
+          registerFunc({email, password});
+            console.log(formData);
         }
+        
     };
 
     return(
@@ -42,15 +34,6 @@ const Register = () => {
         <h1 className="large text-primary">Sign Up</h1>
       <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
       <form className="form" onSubmit={e => onSubmit(e)}>
-        <div className="form-group">
-          <input 
-            type="text" 
-            placeholder="Name" 
-            name="name" 
-            value={name} 
-            onChange={e => onChange(e)}
-            required />
-        </div>
         <div className="form-group">
           <input 
             type="email" 
@@ -83,10 +66,15 @@ const Register = () => {
         <input type="submit" className="btn btn-primary" value="Register" />
       </form>
       <p className="my-1">
-        Already have an account? <a href="login.html">Sign In</a>
+        Already have an account? <Link to="/login">Sign In</Link>
       </p>
     </Fragment>
     );
 };
 
-export default Register;
+Register.propTypes = {
+    setAlert: PropTypes.func.isRequired,
+    registerFunc: PropTypes.func.isRequired
+}
+
+export default connect(null, { setAlert, registerFunc })(Register);

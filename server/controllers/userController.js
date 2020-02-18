@@ -1,7 +1,6 @@
 const mongoose = require('mongoose'),
     User = require('../models/UserSchema');
 
-
 exports.create = function (req, res) {
     var user = new User(req.body);
     user.save(function (err) {
@@ -34,9 +33,8 @@ exports.update = (req, res) => {
 
     User.findById(req.params.userId).then(user => {
         if (!user) {
-
             return res.status(404).send({
-                message: "Error, no user found "
+                message: "Error, no user found " + req.params.userId
             });
         }
         else {
@@ -84,4 +82,15 @@ exports.delete = (req, res) => {
                 message: "User not deleted"
             });
         });
+};
+
+exports.userByID = function (req, res, next, id) {
+    User.findById(id).exec(function (err, user) {
+        if (err) {
+            res.status(400).send(err);
+        } else {
+            req.user = user;
+            next();
+        }
+    });
 };

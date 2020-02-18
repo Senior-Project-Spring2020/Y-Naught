@@ -1,10 +1,12 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import Home from "./views/Home/Home";
-import Products from "./views/Products/Products";
-import NotFound from "./views/NotFound";
+import Home from "./components/Home/Home";
+import Products from "./components/Products/Products";
+import NotFound from "./components/NotFound";
 import NavBar from "./components/Header/NavBar";
 import Register from "./components/Register/register";
+import Login from "./components/Login/login";
+import Alert from './components/Alert'
 //Redux
 import { Provider } from 'react-redux';
 import store from './store';
@@ -18,10 +20,12 @@ const App = () => {
       <div>
         {/* <Router> */}
         <NavBar/>
+        <Alert/>
         <Switch>
           <Route exact path="/Home" component={Home} />
           <Route exact path="/Products" component={Products} />
           <Route exact path="/Register" component={Register} />
+          <Route exact path="/Login" component={Login} />
           <Route exact path="/">
             <Redirect to="/Home" />
           </Route>
