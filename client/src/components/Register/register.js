@@ -7,7 +7,7 @@ import { registerFunc } from '../../actions/auth';
 import PropTypes from 'prop-types';
 // import './register.css';
 
-const Register = (setAlert, registerFunc) => {
+const Register = (/*setAlert,*/ registerFunc) => {
     const[formData, setFormData] = useState({
         email: '',
         password: '',
@@ -73,8 +73,8 @@ const Register = (setAlert, registerFunc) => {
 };
 
 Register.propTypes = {
-    setAlert: PropTypes.func.isRequired,
+    //setAlert: PropTypes.func.isRequired,
     registerFunc: PropTypes.func.isRequired
 }
 
-export default connect(null, { setAlert, registerFunc })(Register);
+export default connect(null, { /*setAlert,*/ registerFunc })(Register);
