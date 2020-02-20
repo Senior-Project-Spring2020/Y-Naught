@@ -7,6 +7,7 @@ const path = require('path'),
     products = require('../routes/Products'),
     auth = require('../routes/auth');
 
+
 module.exports.init = () => {
     /* 
         connect to database
@@ -51,4 +52,3 @@ module.exports.init = () => {
 
     return app
 }
-

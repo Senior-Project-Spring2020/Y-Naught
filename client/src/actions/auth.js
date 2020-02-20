@@ -14,7 +14,7 @@ export const loadUser = () => async dispatch => {
     }
 
     try{
-        const res = await axios.get('/auth');
+        const res = await axios.get('http://localhost:5000/auth');
         dispatch({
             type: USER_LOADED,
             payload: res.data
@@ -37,7 +37,7 @@ export const registerFunc = ({email, password}) => async dispatch => {
     const body = JSON.stringify({ email, password});
 
     try{
-        const res = await axios.post('/Users', body, config);
+        const res = await axios.post('http://localhost:5000/Users', body, config);
 
         dispatch({
             type: REGISTER_SUCCESS,
