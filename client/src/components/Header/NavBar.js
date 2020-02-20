@@ -22,7 +22,7 @@ const NavBar = () => {
                         <Nav.Link href="/lookbook">Lookbook</Nav.Link>
                         <Nav.Link href="/login">Login</Nav.Link> 
                         <Nav.Link href="/register">Register</Nav.Link>
-                        <Nav.Link href="/create">Create Product</Nav.Link>
+                        <Nav.Link href="/createproduct">Create Product</Nav.Link>
                     </Nav>
                 </Navbar>
             </Container>
