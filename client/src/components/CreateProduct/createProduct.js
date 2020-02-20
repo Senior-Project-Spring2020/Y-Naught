@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { Form } from 'react-bootstrap';
+import { Form, FormCheck } from 'react-bootstrap';
 
 const CreateProduct = () => {
     const[formData, setFormData] = useState({
