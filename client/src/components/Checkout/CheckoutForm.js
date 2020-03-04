@@ -3,22 +3,6 @@ import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
 
 import CardSection from './CardSection';
 
-function stripeTokenHandler(token) {
-  const paymentData = {token: token.id};
-
-  // Use fetch to send the token ID and any other payment data to your server.
-  // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
-  const response = fetch('/charge', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(paymentData),
-  });
-
-  // Return and display the result of the charge.
-  return response.json();
-}
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
@@ -30,20 +14,31 @@ export default function CheckoutForm() {
 
     if (!stripe || !elements) {
       // Stripe.js has not yet loaded.
-      // Make  sure to disable form submission until Stripe.js has loaded.
+      // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
 
-    const card = elements.getElement(CardElement);
-    const result = await stripe.createToken(card);
+    const result = await stripe.confirmCardPayment('{CLIENT_SECRET}', {
+      payment_method: {
+        card: elements.getElement(CardElement),
+        billing_details: {
+          name: 'Jenny Rosen',
+        },
+      }
+    });
 
     if (result.error) {
-      // Show error to your customer.
+      // Show error to your customer (e.g., insufficient funds)
       console.log(result.error.message);
     } else {
-      // Send the token to your server.
-      // This function does not exist yet; we will define it in the next step.
-      stripeTokenHandler(result.token);
+      // The payment has been processed!
+      if (result.paymentIntent.status === 'succeeded') {
+        // Show a success message to your customer
+        // There's a risk of the customer closing the window before callback
+        // execution. Set up a webhook or plugin to listen for the
+        // payment_intent.succeeded event that handles any business critical
+        // post-payment actions.
+      }
     }
   };
 
