@@ -5,8 +5,7 @@
     justify-content: flex-start;
     padding: 1%;
 }
-
-
+l
 
 .nav-logo {
     display:flex;
@@ -88,4 +87,8 @@
   .navbar-head{
     border-bottom-style: solid;
     border-width: 2px;
+  }
+  ion-icon {
+    color: pink;
+    margin-left: 250px
   }

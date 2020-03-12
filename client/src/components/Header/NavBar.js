@@ -4,7 +4,7 @@ import './NavBar.css';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Navbar'
-import logo from './Y-Naught_BlckOutline.png'
+import logo from '../../assets/Y-Naught_BlckOutline.png'
 // import NavLink from 'react-bootstrap/NavLink';
 
 const NavBar = () => {
@@ -23,7 +23,10 @@ const NavBar = () => {
                         <Nav.Link href="/login">Login</Nav.Link> 
                         <Nav.Link href="/register">Register</Nav.Link>
                         <Nav.Link href="/createproduct">Create Product</Nav.Link>
-                        <Nav.Link href="/cart">Cart</Nav.Link>
+                        <Nav.Link href="/cart">
+                            <ion-icon name="cart-outline" size="large"></ion-icon>
+                            </Nav.Link>
+                        
                     </Nav>
                 </Navbar>
             </Container>
