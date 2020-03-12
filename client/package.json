@@ -3,20 +3,28 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.19.1",
+    "@stripe/react-stripe-js": "^1.0.3",
+    "@stripe/stripe-js": "^1.0.2",
+    "axios": "^0.19.2",
+    "babel-polyfill": "^6.26.0",
     "bootstrap": "^4.4.1",
     "cors": "^2.8.5",
+    "history": "^4.10.1",
     "moment": "^2.24.0",
     "node-sass": "^4.13.1",
-    "react": "^16.12.0",
+    "parcel": "^1.12.4",
+    "parcel-bundler": "^1.12.4",
+    "react": "^16.13.0",
     "react-bootstrap": "^1.0.0-beta.16",
-    "react-dom": "^16.10.1",
+    "react-dom": "^16.13.0",
     "react-redux": "^7.1.3",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "^3.3.0",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
     "sass": "^1.25.0",
+    "stripe": "^8.24.1",
     "styled-components": "^5.0.0",
     "typescript": "^3.7.5",
     "uuid": "^3.4.0"
@@ -33,7 +41,7 @@
   "devDependencies": {
     "react-router-dom": "^5.1.2"
   },
-  "proxy": "http://localhost:5000",
+  "proxy": "http://localhost:5000/",
   "browserslist": {
     "production": [
       ">0.2%",
