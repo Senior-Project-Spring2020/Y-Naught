@@ -1,9 +1,12 @@
 import React, { Fragment, useState } from 'react';
+import {Link, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { Form, FormCheck } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
+import { product } from '../../actions/product';
 
-const CreateProduct = () => {
+const CreateProduct = ({ product, history }) => {
     const[formData, setFormData] = useState({
         name: '',
         price: '',
@@ -14,7 +17,7 @@ const CreateProduct = () => {
         lngth: '',
         description: '',
         imageName: '',
-        imageData: null,
+        imageData: '',
         available: '',
         quantity: ''
     });
@@ -38,8 +41,8 @@ const CreateProduct = () => {
 
     const onSubmit = async e => {
         e.preventDefault();
+        product(formData, history);
         console.log(formData);
-        axios.post('')
     };
 
 return(
@@ -141,4 +144,9 @@ return(
 );
 
 };
-export default CreateProduct;
+
+CreateProduct.propTyes = {
+    product: PropTypes.func.isRequired,
+};
+
+export default connect(null, {product})(withRouter(CreateProduct));

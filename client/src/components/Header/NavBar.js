@@ -1,5 +1,8 @@
-import React from 'react';
-// import { Link } from 'react-router-dom';
+import React, { Fragment } from 'react';
+//import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { logout } from '../../actions/auth';
 import './NavBar.css';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -7,7 +10,21 @@ import Container from 'react-bootstrap/Navbar'
 import logo from './Y-Naught_BlckOutline.png'
 // import NavLink from 'react-bootstrap/NavLink';
 
-const NavBar = () => {
+const NavBar = ({ auth: { isAuthenticated, loading}, logout }) => {
+    const authLinks = (
+        <Nav className="mr-auto">
+            <Nav.Link href="/createproduct">Create Product</Nav.Link>
+            <Nav.Link onClick={logout} href="#!">Logout</Nav.Link> 
+        </Nav>
+    );
+
+    const guestLinks = (
+        <Nav className="mr-auto">
+            <Nav.Link href="/login">Login</Nav.Link> 
+            <Nav.Link href="/register">Register</Nav.Link>
+        </Nav>
+    );
+
     return (
         <div className = "header">
             <Container className="navbar-head">
@@ -20,9 +37,10 @@ const NavBar = () => {
                         <Nav.Link href="/home">Home</Nav.Link>
                         <Nav.Link href="/products">Products</Nav.Link>
                         <Nav.Link href="/lookbook">Lookbook</Nav.Link>
-                        <Nav.Link href="/login">Login</Nav.Link> 
-                        <Nav.Link href="/register">Register</Nav.Link>
-                        <Nav.Link href="/createproduct">Create Product</Nav.Link>
+                        {/* <Nav.Link href="/login">Login</Nav.Link> 
+                        <Nav.Link href="/register">Register</Nav.Link> */}
+                        {/* <Nav.Link href="/createproduct">Create Product</Nav.Link> */}
+                        { !loading && (<Fragment>{isAuthenticated ? authLinks: guestLinks}</Fragment>)}
                     </Nav>
                 </Navbar>
             </Container>
@@ -30,4 +48,13 @@ const NavBar = () => {
     )
 };
 
-export default NavBar;
+NavBar.propTyppes = {
+    logout: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => ({
+    auth: state.auth
+})
+
+export default connect(mapStateToProps, { logout }) (NavBar);
