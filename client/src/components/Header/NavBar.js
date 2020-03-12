@@ -23,6 +23,7 @@ const NavBar = () => {
                         <Nav.Link href="/login">Login</Nav.Link> 
                         <Nav.Link href="/register">Register</Nav.Link>
                         <Nav.Link href="/createproduct">Create Product</Nav.Link>
+                        <Nav.Link href="/cart">Cart</Nav.Link>
                     </Nav>
                 </Navbar>
             </Container>

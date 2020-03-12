@@ -1,5 +1,7 @@
 import React from 'react';
-import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
+import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
+import { Button } from '@material-ui/core';
+import { PayPalButton } from "react-paypal-button-v2";
 
 import CardSection from './CardSection';
 
@@ -45,7 +47,8 @@ export default function CheckoutForm() {
   return (
     <form onSubmit={handleSubmit}>
       <CardSection />
-      <button disabled={!stripe}>Confirm order</button>
+      <Button variant="contained" color="primary">Confirm Payment</Button>
+      <PayPalButton></PayPalButton>
     </form>
   );
 }

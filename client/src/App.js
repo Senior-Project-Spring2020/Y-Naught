@@ -17,7 +17,7 @@ import setAuthToken from './utils/setAuthToken';
 //stripe
 // import ProductCard from './components/ProductCard/ProductCard';
 import Checkout from './components/Checkout/Checkout'
-
+import Cart from './components/Cart/Cart'
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
@@ -38,7 +38,7 @@ const App = () => {
           <Route exact path="/Register" component={Register} />
           <Route exact path="/Login" component={Login} />
           <Route exact path="/CreateProduct" component={CreateProduct} />
-          <Route exact path="/Checkout" component={Checkout} />
+          <Route exact path="/Cart" component={Cart} />
           <Route exact path="/">
             <Redirect to="/Home" />
           </Route>
