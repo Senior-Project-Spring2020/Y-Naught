@@ -8,4 +8,5 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 export const GET_PRODUCT = 'GET_PRODUCT';
+export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const PRODUCT_ERROR = 'PRODUCT_ERROR';
