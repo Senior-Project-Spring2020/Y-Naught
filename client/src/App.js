@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import Home from "./components/Home/Home";
-import Products from "./components/Products/Products";
-import NotFound from "./components/NotFound";
-import NavBar from "./components/Header/NavBar";
-import Register from "./components/Register/register";
-import Login from "./components/Login/login";
+import Home from './components/Home/Home';
+import Products from './components/Products/Products';
+import Product from './components/Product/Product';
+import NotFound from './components/NotFound';
+import NavBar from './components/Header/NavBar';
+import Register from './components/Register/register';
+import Login from './components/Login/login';
 import CreateProduct from './components/CreateProduct/createProduct';
 import Alert from './components/Alert';
+
 //Redux
 import { Provider } from 'react-redux';
 import store from './store';
@@ -16,38 +18,38 @@ import setAuthToken from './utils/setAuthToken';
 
 //stripe
 // import ProductCard from './components/ProductCard/ProductCard';
-import Checkout from './components/Checkout/Checkout'
+import Checkout from './components/Checkout/Checkout';
 
 if (localStorage.token) {
-  setAuthToken(localStorage.token);
+	setAuthToken(localStorage.token);
 }
 
 const App = () => {
-  useEffect(() => {
-    store.dispatch(loadUser());
-  }, []);
+	useEffect(() => {
+		store.dispatch(loadUser());
+	}, []);
 
-  return (
-    <Provider store={store}>
-      <div>
-        <NavBar />
-        <Alert />
-        <Switch>
-          <Route exact path="/Home" component={Home} />
-          <Route exact path="/Products" component={Products} />
-          <Route exact path="/Register" component={Register} />
-          <Route exact path="/Login" component={Login} />
-          <Route exact path="/CreateProduct" component={CreateProduct} />
-          <Route exact path="/Checkout" component={Checkout} />
-          <Route exact path="/">
-            <Redirect to="/Home" />
-          </Route>
-          <Route component={NotFound} />
-        </Switch>
-      </div>
-    </Provider>
-
-  );
-}
+	return (
+		<Provider store={store}>
+			<div>
+				<NavBar />
+				<Alert />
+				<Switch>
+					<Route exact path='/Home' component={Home} />
+					<Route exact path='/Products' component={Products} />
+					<Route exact path='/Product/:id' component={Product} />
+					<Route exact path='/Register' component={Register} />
+					<Route exact path='/Login' component={Login} />
+					<Route exact path='/CreateProduct' component={CreateProduct} />
+					<Route exact path='/Checkout' component={Checkout} />
+					<Route exact path='/'>
+						<Redirect to='/Home' />
+					</Route>
+					<Route component={NotFound} />
+				</Switch>
+			</div>
+		</Provider>
+	);
+};
 
 export default App;
