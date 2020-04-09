@@ -1,9 +1,11 @@
-import React, { Fragment, useState } from 'react';
+import React, {useState } from 'react';
+import {withRouter } from 'react-router-dom'
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import axios from 'axios';
-import { Form, FormCheck } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
+import { product } from '../../actions/product';
 
-const CreateProduct = () => {
+const CreateProduct = ({ product, history }) => {
     const[formData, setFormData] = useState({
         name: '',
         price: '',
@@ -13,10 +15,8 @@ const CreateProduct = () => {
         width: '',
         lngth: '',
         description: '',
-        imageName: '',
-        imageData: null,
-        available: '',
-        quantity: ''
+        quantity: '',
+        image: ''
     });
 
     const {
@@ -28,18 +28,16 @@ const CreateProduct = () => {
         width,
         lngth,
         description,
-        imageName,
-        imageData,
-        available,
-        quantity
+        quantity,
+        image
     } = formData;
 
-    const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
+    const onChange = e => setFormData({...formData, [e.target.name]: e.target.value,});
 
     const onSubmit = async e => {
         e.preventDefault();
+        product(formData, history);
         console.log(formData);
-        axios.post('')
     };
 
 return(
@@ -129,10 +127,10 @@ return(
         </div>
         <div>
             <input type="file" 
-            placeholder="imageData"
-            name="imageData"
-            value={imageData}
+            placeholder="image"
+            name="image"
             onChange={e => onChange(e)}
+            {...console.log({image})}
             />
         </div>
         <input type="submit" className="btn btn-primary" value="Create Product" />
@@ -141,4 +139,9 @@ return(
 );
 
 };
-export default CreateProduct;
+
+CreateProduct.propTyes = {
+    product: PropTypes.func.isRequired,
+};
+
+export default connect(null, {product})(withRouter(CreateProduct));

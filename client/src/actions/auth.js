@@ -1,45 +1,58 @@
 import axios from 'axios';
+import { setAlert } from './alert';
 import {
     REGISTER_SUCCESS,
     REGISTER_FAIL,
     USER_LOADED,
+    ADMIN_LOADED,
     AUTH_ERROR,
     LOGIN_SUCCESS,
-    LOGIN_FAIL
+    LOGIN_FAIL,
+    ADMIN_LOGIN_FAIL,
+    ADMIN_LOGIN_SUCCESS,
+    LOGOUT,
 } from './types';
-import setAuthToken from '../utils/setAuthToken'
 
 //LOAD USER
 export const loadUser = () => async dispatch => {
-    if(localStorage.token){
-        setAuthToken(localStorage.token);
-    }
-
-    try{
-        const res = await axios.get('http://localhost:5000/auth');
+    try {
+        const res = await axios.get('/auth/user');
         dispatch({
             type: USER_LOADED,
             payload: res.data
         });
-    } catch (err){
+    } catch (err) {
         dispatch({
             type: AUTH_ERROR
         });
     }
 };
 
+export const loadAdmin = () => async dispatch => {
+    try {
+        const res = await axios.get('/auth/admin');
+        dispatch({
+            type: ADMIN_LOADED,
+            payload: res.data
+        });
+    } catch (err) {
+        dispatch({
+            type: AUTH_ERROR
+        });
+    }
+};
 
-export const registerFunc = ({email, password}) => async dispatch => {
+export const registerFunc = ({ email, password }) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json'
         }
     };
 
-    const body = JSON.stringify({ email, password});
+    const body = JSON.stringify({ email, password });
 
-    try{
-        const res = await axios.post('http://localhost:5000/Users', body, config);
+    try {
+        const res = await axios.post('/Users', body, config);
 
         dispatch({
             type: REGISTER_SUCCESS,
@@ -49,6 +62,10 @@ export const registerFunc = ({email, password}) => async dispatch => {
         dispatch(loadUser());
     }
     catch (err) {
+        const errors = err.response.data.errors;
+        if (errors) {
+            errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+        }
         dispatch({
             type: REGISTER_FAIL
         });
@@ -62,10 +79,10 @@ export const login = (email, password) => async dispatch => {
         }
     };
 
-    const body = JSON.stringify({ email, password});
+    const body = JSON.stringify({ email, password });
 
-    try{
-        const res = await axios.post('http://localhost:5000/auth', body, config);
+    try {
+        const res = await axios.post('/auth/user', body, config);
 
         dispatch({
             type: LOGIN_SUCCESS,
@@ -79,4 +96,33 @@ export const login = (email, password) => async dispatch => {
             type: LOGIN_FAIL
         });
     }
+};
+
+export const adminLogin = (email, password) => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    const body = JSON.stringify({ email, password });
+
+    try {
+        const res = await axios.post('/auth/admin', body, config);
+
+        dispatch({
+            type: ADMIN_LOGIN_SUCCESS,
+            payload: res.data
+        });
+        dispatch(loadAdmin());
+    }
+    catch (err) {
+        dispatch({
+            type: ADMIN_LOGIN_FAIL
+        });
+    }
+};
+//LOGOUT
+export const logout = () => dispatch => {
+    dispatch({ type: LOGOUT });
 };

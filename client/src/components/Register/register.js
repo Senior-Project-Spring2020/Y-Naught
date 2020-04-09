@@ -7,45 +7,45 @@ import { registerFunc } from '../../actions/auth';
 import PropTypes from 'prop-types';
 // import './register.css';
 
-const Register = ({setAlert, registerFunc, isAuthenticated}) => {
-    const[formData, setFormData] = useState({
-        email: '',
-        password: '',
-        password2: ''
-    });
+const Register = ({ setAlert, registerFunc, isAuthenticated }) => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    password2: ''
+  });
 
-    const { email, password, password2 } = formData;
+  const { email, password, password2 } = formData;
 
-    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-    const onSubmit = async e => {
-        e.preventDefault();
-        if(password !== password2){
-            console.log("Passwords do not match");
-        }else{ 
-          registerFunc({email, password});
-            console.log(formData);
-        }
-        
-    };
-
-    if(isAuthenticated) {
-      return <Redirect to ='/home' />;
+  const onSubmit = async e => {
+    e.preventDefault();
+    if (password !== password2) {
+      console.log("Passwords do not match");
+    } else {
+      registerFunc({ email, password });
+      console.log(formData);
     }
 
-    return(
+  };
+
+  if (isAuthenticated) {
+    return <Redirect to='/home' />;
+  }
+
+  return (
     <Fragment>
-        <h1 className="large text-primary">Sign Up</h1>
+      <h1 className="large text-primary">Sign Up</h1>
       <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
       <form className="form" onSubmit={e => onSubmit(e)}>
         <div className="form-group">
-          <input 
-            type="email" 
-            placeholder="Email Address" 
-            name="email" 
-            value={email} 
+          <input
+            type="email"
+            placeholder="Email Address"
+            name="email"
+            value={email}
             onChange={e => onChange(e)}
-            required/>
+            required />
         </div>
         <div className="form-group">
           <input
@@ -53,9 +53,9 @@ const Register = ({setAlert, registerFunc, isAuthenticated}) => {
             placeholder="Password"
             name="password"
             minLength="6"
-            value={password} 
+            value={password}
             onChange={e => onChange(e)}
-          />
+            required />
         </div>
         <div className="form-group">
           <input
@@ -63,9 +63,9 @@ const Register = ({setAlert, registerFunc, isAuthenticated}) => {
             placeholder="Confirm Password"
             name="password2"
             minLength="6"
-            value={password2} 
+            value={password2}
             onChange={e => onChange(e)}
-          />
+            required />
         </div>
         <input type="submit" className="btn btn-primary" value="Register" />
       </form>
@@ -73,13 +73,12 @@ const Register = ({setAlert, registerFunc, isAuthenticated}) => {
         Already have an account? <Link to="/login">Sign In</Link>
       </p>
     </Fragment>
-    );
+  );
 };
 
 Register.propTypes = {
-    setAlert: PropTypes.func.isRequired,
-    registerFunc: PropTypes.func.isRequired,
-    isAuthenticated: PropTypes.bool,
+  setAlert: PropTypes.func.isRequired,
+  registerFunc: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

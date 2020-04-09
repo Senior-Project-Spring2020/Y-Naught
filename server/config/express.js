@@ -24,6 +24,10 @@ module.exports.init = () => {
     // initialize app
     const app = express();
 
+    var cors = require('cors');
+
+    app.use(cors());
+
     //API Test
     app.get('/', (req, res) => res.send('API Running'));
 
