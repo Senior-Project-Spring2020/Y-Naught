@@ -3,18 +3,30 @@ const express = require('express'),
     Product = require('../models/ProductSchema'),
     { check, validationResult } = require('express-validator');
 
+const multer = require("multer");
+const storage = multer.diskStorage({
+    destination: function(req,file,cb){
+        cb(null, './uploads/');
+    },
+    filename: function(req,file,cb){
+        cb(null,new Date().toISOString() + file.originalname);
+    }
+});
+const upload = multer({storage: storage});
 // @route   POST /Products
 // @desc    Create new product or update existing
 // @access  Public
-
+//Multer image 
+ 
 router.post('/:id?', [
     check('name', 'Name is required')
         .not().isEmpty(),
     check('price', 'Price is required')
         .not().isEmpty()
-],
+],upload.single('image'),
     async (req, res) => {
         const errors = validationResult(req);
+        console.log(req.file);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
@@ -28,21 +40,22 @@ router.post('/:id?', [
             width,
             length,
             description,
-            image
         } = req.body;
 
+        const image = req.file;
         //Build product object
 
         const productFields = {};
         productFields.name = name;
         productFields.price = price;
+        if(image) productFields.image = image;
         if (size) productFields.size = size;
         if (brand) productFields.brand = brand;
         if (era) productFields.era = era;
         if (width) productFields.width = width;
         if (length) productFields.length = length;
         if (description) productFields.description = description;
-        if (image) productFields.image = image;
+
 
         try {
 
@@ -118,4 +131,6 @@ router.delete('/:product_id', async (req, res) => {
         res.status(500).send('Server Error');
     }
 });
+
+
 module.exports = router;

@@ -11,9 +11,11 @@ var ProductSchema = new Schema({
 	width: String,
 	length: String,
 	description: String,
-	image: String,
-	available: Boolean
-
+	available: Boolean,
+	image:{
+		type: String,
+		default: "none",
+	}
 });
 
 ProductSchema.pre('save', function (next) {
