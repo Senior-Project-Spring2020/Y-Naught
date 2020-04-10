@@ -1,0 +1,27 @@
+.container {
+	margin-top: 100px;
+}
+
+.btn-light {
+	margin: 2rem;
+}
+
+.o-button-basket {
+	min-height: 24px;
+	width: 75%;
+	margin-top: 20px;
+	padding: 7.5px 8px;
+	border: 1px solid #222;
+	border-radius: 0;
+	font: 500 2rem/1.36 helvetica, arial, sans-serif;
+	letter-spacing: 0.05rem;
+	text-align: center;
+	color: #fff;
+	background-color: #222;
+	cursor: pointer;
+	-webkit-font-smoothing: antialiased;
+}
+
+.color-price {
+	color: #b12704;
+}

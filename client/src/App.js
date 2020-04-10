@@ -7,8 +7,7 @@ import NavBar from "./components/Header/NavBar";
 import Register from "./components/Register/register";
 import Login from "./components/Login/login";
 import adminRoute from "./components/Admin/adminLogin"
-import CreateProduct from './components/CreateProduct/createProduct';
-import Alert from './components/Alert';
+import Product from './components/Product/Product';
 //Redux
 import { Provider, connect } from 'react-redux';
 import store from './store';
@@ -36,6 +35,7 @@ const App = () => {
           <Switch>
             <Route exact path="/Home" component={Home} />
             <Route exact path="/Products" component={Products} />
+            <Route exact path='/Product/:id' component={Product} />
             <Route exact path="/Register" component={Register} />
             <Route exact path="/Login" component={Login} />
             <Route path="/createproduct" component={CreateProduct} />

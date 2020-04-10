@@ -7,7 +7,7 @@ import card from '../../assets/Y-Naught_Square.png';
 const ProductItem = ({ product: { name, price, imageData } }) => {
 	return (
 		<Col className='products'>
-			<img src={imageData} alt='1' width='175' height='auto' />
+			<img src={card} alt='1' width='175' height='auto' />
 			<figcaption>{name}</figcaption>
 			<figcaption>${price}</figcaption>
 		</Col>
