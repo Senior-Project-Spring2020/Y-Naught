@@ -1,19 +1,21 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-//import Spinner from '../layout/Spinner';
 import { getProductByID } from '../../actions/product';
 import ProductCarousel from './ProductCarousel';
 import ProductDescription from './ProductDescription';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 import './Product.css';
+import {addToCart} from '../../actions/cart';
+import Button from '@material-ui/core/Button';
 
 const Product = ({
 	getProductByID,
 	product: { product, loading },
 	auth,
 	match,
+	addToCart
 }) => {
 	useEffect(() => {
 		getProductByID(match.params.id);
@@ -36,9 +38,9 @@ const Product = ({
 								</Col>
 								<Col lg='5'>
 									<ProductDescription product={product} />
-									<button type='submit' class='o-button-basket'>
+									<Button type='submit' class='o-button-basket' onClick={addToCart}>
 										<span class='c-product-add-to-cart__text'>Add to Cart</span>
-									</button>
+									</Button>
 								</Col>
 							</Row>
 						</Container>
@@ -60,4 +62,4 @@ const mapStateToProps = (state) => ({
 	auth: state.auth,
 });
 
-export default connect(mapStateToProps, { getProductByID })(Product);
+export default connect(mapStateToProps, { getProductByID, addToCart })(Product);

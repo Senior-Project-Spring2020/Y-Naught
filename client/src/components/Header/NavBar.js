@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 //import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -8,29 +8,17 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Navbar';
 import logo from '../../assets/Y-Naught_BlckOutline.png';
-import createProduct from '../CreateProduct/createProduct';
+import { getNum } from '../../actions/getCart';
 // import NavLink from 'react-bootstrap/NavLink';
 
-const NavBar = ({ auth: { isAuthenticated, loading, admin }, logout }) => {
+const NavBar = ({ auth: { isAuthenticated, loading, getNum }, logout }) => {
+
     const authLinks = (
         <Nav className="mr-auto">
+            <Nav.Link href="/createproduct">Create Product</Nav.Link>
             <Nav.Link onClick={logout} href="#!">Logout</Nav.Link>
         </Nav>
     );
-
-    const guestLinks = (
-        <Nav className="mr-auto">
-            <Nav.Link href="/login">Login</Nav.Link>
-            <Nav.Link href="/register">Register</Nav.Link>
-        </Nav>
-    );
-
-    const createLink = (
-        <Nav className="mr-auto">
-            <Nav.Link href="/createproduct" onSelect={createProduct}>Create Product</Nav.Link>
-        </Nav>
-    );
-
     return (
         <div className="header">
             <Container className="navbar-head">
@@ -41,17 +29,17 @@ const NavBar = ({ auth: { isAuthenticated, loading, admin }, logout }) => {
                     <Navbar.Brand className="brandName" href="/home">Y-Naught</Navbar.Brand>
                     <Nav className="mr-auto">
                         <Nav.Link href="/home">Home</Nav.Link>
+                        <Nav.Link href="/about">About</Nav.Link>
                         <Nav.Link href="/products">Products</Nav.Link>
                         <Nav.Link href="/lookbook">Lookbook</Nav.Link>
                         {/* <Nav.Link href="/login">Login</Nav.Link> 
                         <Nav.Link href="/register">Register</Nav.Link> */}
                         {/* <Nav.Link href="/createproduct">Create Product</Nav.Link> */}
-                        {!loading && (<Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>)}
-                        {!loading && (<Fragment>{admin ? createLink : null }</Fragment>)}
-                        
+                        {!loading && (<Fragment>{isAuthenticated ? authLinks : null}</Fragment>)}
+
                     </Nav>
                     <Nav.Link href="/cart">
-                        <ion-icon name="cart-outline" size="large"></ion-icon>
+                    <ion-icon name="cart-outline" size="large"></ion-icon><span>{getNum}</span>
                     </Nav.Link>
                 </Navbar>
             </Container>
@@ -65,7 +53,8 @@ NavBar.propTyppes = {
 }
 
 const mapStateToProps = state => ({
-    auth: state.auth
+    auth: state.auth,
+    getNum: state.getNum
 })
 
-export default connect(mapStateToProps, { logout })(NavBar);
+export default connect(mapStateToProps, { logout, getNum })(NavBar);

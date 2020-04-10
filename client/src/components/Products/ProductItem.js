@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Col from 'react-bootstrap/Col';
 import card from '../../assets/Y-Naught_Square.png';

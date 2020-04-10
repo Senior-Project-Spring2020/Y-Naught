@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -15,7 +15,6 @@ const CreateProduct = ({ product, history }) => {
 		width: '',
 		lngth: '',
 		description: '',
-		imageName: '',
 		imageData: '',
 		available: '',
 		quantity: ''
@@ -30,7 +29,6 @@ const CreateProduct = ({ product, history }) => {
 		width,
 		lngth,
 		description,
-		imageName,
 		imageData,
 		available,
 		quantity

@@ -8,8 +8,7 @@
     LOGOUT,
     ADMIN_LOGIN_FAIL,
     ADMIN_LOGIN_SUCCESS,
-    ADMIN_LOADED,
-    ADMIN_REGISTER
+    ADMIN_LOADED
 } from '../actions/types';
 
 const initialState = {
@@ -38,15 +37,7 @@ export default function (state = initialState, action){
                 loading: false,
                 admin: payload
             };
-        case REGISTER_SUCCESS:
-        case ADMIN_REGISTER:
-            localStorage.setItem('token', payload.token);
-            return {
-                ...state,
-                ...payload,
-                isAuthenticated: true,
-                loading: false
-            };         
+        case REGISTER_SUCCESS:       
         case ADMIN_LOGIN_SUCCESS:
             localStorage.setItem('token', payload.token);
             return {

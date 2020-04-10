@@ -1,11 +1,10 @@
 import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 //import axios from 'axios';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
 import PropTypes from 'prop-types';
 import { adminLogin } from '../../actions/auth';
-import jwt_decode from 'jwt-decode';
 //material-ui
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';

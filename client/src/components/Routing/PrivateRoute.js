@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-const HideCreate = ({
+const PrivateRoute = ({
   component: Component,
   auth: { isAuthenticated, loading },
   ...rest
@@ -11,12 +11,16 @@ const HideCreate = ({
   <Route
     {...rest}
     render={props =>
-      isAuthenticated ? <Component {...props} /> : <Redirect to="/Home" />
+      !isAuthenticated && !loading ? (
+        <Redirect to="/home" />
+      ) : (
+        <Component {...props} />
+      )
     }
   />
 );
 
-HideCreate.propTypes = {
+PrivateRoute.propTypes = {
   auth: PropTypes.object.isRequired
 };
 
@@ -24,4 +28,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps)(HideCreate);
+export default connect(mapStateToProps)(PrivateRoute);
