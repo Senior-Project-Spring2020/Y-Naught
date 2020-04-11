@@ -60,6 +60,7 @@ Product.propTypes = {
 const mapStateToProps = (state) => ({
 	product: state.product,
 	auth: state.auth,
+	addToCart:state.addToCart
 });
 
 export default connect(mapStateToProps, { getProductByID, addToCart })(Product);

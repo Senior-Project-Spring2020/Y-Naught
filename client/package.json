@@ -12,6 +12,7 @@
     "cors": "^2.8.5",
     "history": "^4.10.1",
     "jwt-decode": "^2.2.0",
+    "lorem-ipsum": "^2.0.3",
     "moment": "^2.24.0",
     "node-sass": "^4.13.1",
     "parcel": "^1.12.4",

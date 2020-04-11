@@ -8,5 +8,5 @@ export default combineReducers({
     alert,
     auth,
     product,
-    cartSate: cart
+    cartState: cart
 })

@@ -8,6 +8,7 @@ import adminRoute from "./components/Admin/adminLogin"
 import Product from './components/Product/Product';
 import CreateProduct from './components/CreateProduct/createProduct';
 import Alert from './components/Alert';
+import About from './components/About/About';
 
 //Redux
 import { Provider, connect } from 'react-redux';
@@ -33,6 +34,7 @@ const App = () => {
           <Alert />
           <Switch>
             <Route exact path="/Home" component={Home} />
+            <Route exact path="/About" component={About} />
             <Route exact path="/Products" component={Products} />
             <Route exact path='/Product/:id' component={Product} />
             <PrivateRoute exact path="/createproduct" component={CreateProduct} />

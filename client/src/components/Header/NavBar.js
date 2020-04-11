@@ -11,7 +11,11 @@ import logo from '../../assets/Y-Naught_BlckOutline.png';
 import { getNum } from '../../actions/getCart';
 // import NavLink from 'react-bootstrap/NavLink';
 
-const NavBar = ({ auth: { isAuthenticated, loading, getNum }, logout }) => {
+const NavBar = ({ auth: { isAuthenticated, loading,}, logout, getNum }) => {
+
+    useEffect(() => {
+        getNum();
+    }, [])
 
     const authLinks = (
         <Nav className="mr-auto">
@@ -54,7 +58,7 @@ NavBar.propTyppes = {
 
 const mapStateToProps = state => ({
     auth: state.auth,
-    getNum: state.getNum
+    getNum: state.cartState
 })
 
 export default connect(mapStateToProps, { logout, getNum })(NavBar);
