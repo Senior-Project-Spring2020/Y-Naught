@@ -19,7 +19,7 @@ export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const PRODUCT_ERROR = 'PRODUCT_ERROR';
 
 //Cart
-export const ADD_PRODUCT_CART= "ADD_PRODUCT_CART";
-export const GET_NUM_CART = "GET_NUM_CART";
-
+export const ADD_CART_ITEM= "ADD_CART_ITEM";
+export const REMOVE_CART_ITEM = "REMOVE_CART_ITEM";
+export const GET_CART = "GET_CART";
 

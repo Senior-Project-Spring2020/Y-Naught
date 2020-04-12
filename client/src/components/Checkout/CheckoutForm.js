@@ -1,14 +1,15 @@
 import React from 'react';
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import { Button } from '@material-ui/core';
 import { PayPalButton } from "react-paypal-button-v2";
+import TextField from '@material-ui/core/TextField';
 
 import CardSection from './CardSection';
 
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
-
   const handleSubmit = async (event) => {
     // We don't want to let default form submission happen here,
     // which would refresh the page.
@@ -20,35 +21,41 @@ export default function CheckoutForm() {
       return;
     }
 
-    const result = await stripe.confirmCardPayment('{CLIENT_SECRET}', {
+    const result = await stripe.confirmCardPayment('{SECRET_KEY}'', {
       payment_method: {
         card: elements.getElement(CardElement),
-        billing_details: {
-          name: 'Jenny Rosen',
-        },
+      },
+      error: {
+
       }
     });
 
     if (result.error) {
-      // Show error to your customer (e.g., insufficient funds)
+      result.json("Error")
       console.log(result.error.message);
     } else {
-      // The payment has been processed!
+      // Payment works
       if (result.paymentIntent.status === 'succeeded') {
         // Show a success message to your customer
         // There's a risk of the customer closing the window before callback
         // execution. Set up a webhook or plugin to listen for the
         // payment_intent.succeeded event that handles any business critical
         // post-payment actions.
+
       }
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div>
+    <form autoComplete="on" >
+      <TextField required id="standard-required" label="Cardholder Name"/>
+      <TextField required id="standard-required" label="Address"/>
+      <TextField required id="standard-required" label="Phone Number"/>
       <CardSection />
-      <Button variant="contained" color="primary">Confirm Payment</Button>
-      <PayPalButton></PayPalButton>
+      <Button variant="contained" color="primary" onClick={handleSubmit}>Confirm Payment</Button>
     </form>
+    <PayPalButton></PayPalButton>
+    </div>
   );
 }

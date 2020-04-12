@@ -8,14 +8,9 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Navbar';
 import logo from '../../assets/Y-Naught_BlckOutline.png';
-import { getNum } from '../../actions/getCart';
 // import NavLink from 'react-bootstrap/NavLink';
 
-const NavBar = ({ auth: { isAuthenticated, loading,}, logout, getNum }) => {
-
-    useEffect(() => {
-        getNum();
-    }, [])
+const NavBar = ({ auth: { isAuthenticated, loading,}, logout}) => {
 
     const authLinks = (
         <Nav className="mr-auto">
@@ -43,7 +38,7 @@ const NavBar = ({ auth: { isAuthenticated, loading,}, logout, getNum }) => {
 
                     </Nav>
                     <Nav.Link href="/cart">
-                    <ion-icon name="cart-outline" size="large"></ion-icon><span>{getNum}</span>
+                    <ion-icon name="cart-outline" size="large"></ion-icon>
                     </Nav.Link>
                 </Navbar>
             </Container>
@@ -57,8 +52,7 @@ NavBar.propTyppes = {
 }
 
 const mapStateToProps = state => ({
-    auth: state.auth,
-    getNum: state.cartState
+    auth: state.auth
 })
 
-export default connect(mapStateToProps, { logout, getNum })(NavBar);
+export default connect(mapStateToProps, { logout })(NavBar);

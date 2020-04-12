@@ -1,23 +1,47 @@
-import { ADD_PRODUCT_CART, GET_NUM_CART } from '../actions/types';
+import { ADD_CART_ITEM, REMOVE_CART_ITEM, GET_CART } from "../actions/types";
 
-const initialSate = {
-    cartNum: 0,
-    cartCost: 0
-}
+const initialState = {
+  cart: [],
+  loading: false,
+  totalPrice: 0
+};
 
-export default (state = initialSate, action) => {
-    switch (action.type) {
-        case ADD_PRODUCT_CART:
-            return {
-                ...state,
-                cartNum: state.cartNum + 1,
-                cartCost: state.cartCost 
-            }
-        case GET_NUM_CART:
-            return{
-                ...state
-            }
-        default:
-            return state;
-    }
+export default function(state = initialState, action) {
+  switch (action.type) {
+    case ADD_CART_ITEM:
+      var cartState = JSON.parse(localStorage.getItem("Cart"));
+      cartState = cartState ? cartState : [];
+
+      localStorage.setItem(
+        "Cart",
+        JSON.stringify([...cartState, action.payload])
+      );
+
+      return {
+        ...state,
+        cart: JSON.parse(localStorage.getItem("Cart"))
+      };
+    case GET_CART:
+      return {
+        ...state,
+        cart: action.payload
+      };
+    case REMOVE_CART_ITEM:
+      cartState = JSON.parse(localStorage.getItem("Cart"));
+      cartState = cartState ? cartState : [];
+
+      localStorage.setItem(
+        "Cart",
+        JSON.stringify([
+          ...cartState.filter(cartItem => cartItem._id !== action.payload)
+        ])
+      );
+
+      return {
+        ...state,
+        cart: JSON.parse(localStorage.getItem("Cart"))
+      };
+    default:
+      return state;
+  }
 }

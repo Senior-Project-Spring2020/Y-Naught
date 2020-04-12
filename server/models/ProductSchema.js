@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 var ProductSchema = new Schema({
 
 	name: { type: String, required: true },
-	price: { type: String, required: true },
+	price: { type: Number, required: true },
 	size: String,
 	brand: String,
 	era: String,

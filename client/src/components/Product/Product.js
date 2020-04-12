@@ -21,6 +21,9 @@ const Product = ({
 		getProductByID(match.params.id);
 	}, [getProductByID]);
 
+	const HandleAddToCart = () =>{
+		addToCart(product);
+	}
 	return (
 		<Fragment>
 			{product === null || loading ? (
@@ -38,7 +41,7 @@ const Product = ({
 								</Col>
 								<Col lg='5'>
 									<ProductDescription product={product} />
-									<Button type='submit' class='o-button-basket' onClick={addToCart}>
+									<Button type='submit' class='o-button-basket' onClick={HandleAddToCart}>
 										<span class='c-product-add-to-cart__text'>Add to Cart</span>
 									</Button>
 								</Col>
@@ -60,7 +63,7 @@ Product.propTypes = {
 const mapStateToProps = (state) => ({
 	product: state.product,
 	auth: state.auth,
-	addToCart:state.addToCart
+	addToCart:state.addToCart,
 });
 
 export default connect(mapStateToProps, { getProductByID, addToCart })(Product);
