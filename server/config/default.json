@@ -1,3 +1,7 @@
 {
+<<<<<<< HEAD
     "jwtSecret": "mysecrettoken"
+=======
+   "jwtSecret": "mysecrettoken"
+>>>>>>> cart
 }

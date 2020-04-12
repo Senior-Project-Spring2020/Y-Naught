@@ -3,9 +3,9 @@ const path = require('path'),
     mongoose = require('mongoose'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
-    users = require('../routes/Users'),
     products = require('../routes/Products'),
-    admin = require('../routes/Auth');
+    auth = require('../routes/auth'),
+    users = require('../routes/Users');
 
 module.exports.init = () => {
     /* 
@@ -23,6 +23,10 @@ module.exports.init = () => {
     // initialize app
     const app = express();
 
+    var cors = require('cors');
+
+    app.use(cors());
+
     //API Test
     app.get('/', (req, res) => res.send('API Running'));
 
@@ -31,13 +35,13 @@ module.exports.init = () => {
     app.use(morgan('dev'));
 
     // body parsing middleware
-    app.use(bodyParser.json());
-
+    app.use(bodyParser.json({limit: '10mb', extended: true}))
+    app.use('/uploads', express.static('uploads'));
     // add a router
 
-    app.use('/users', users);
     app.use('/products', products);
-    app.use('/admin', admin);
+    app.use('/auth', auth);
+    app.use('/users', users);
 
     if (process.env.NODE_ENV === 'production') {
         // Serve any static files
@@ -51,4 +55,3 @@ module.exports.init = () => {
 
     return app
 }
-

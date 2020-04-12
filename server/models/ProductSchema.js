@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 var ProductSchema = new Schema({
 
 	name: { type: String, required: true },
-	price: { type: String, required: true },
+	price: { type: Number, required: true },
 	size: String,
 	brand: String,
 	era: String,
@@ -12,9 +12,10 @@ var ProductSchema = new Schema({
 	lngth: String,
 	description: String,
 	available: Boolean,
-	imageName:{type: String, default:"none"},
-	imageData:{type:String},
-	quantity: Number
+	image:{
+		type: String,
+		default: "none",
+	}
 });
 
 ProductSchema.pre('save', function (next) {

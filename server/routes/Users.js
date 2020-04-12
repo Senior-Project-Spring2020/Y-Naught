@@ -6,12 +6,14 @@ const config = require('config');
 const { check, validationResult } = require('express-validator');
 
 const User = require('../models/UserSchema');
-// @route    POST /Users
+
+// @route    POST api/users
 // @desc     Register user
 // @access   Public
 router.post(
-    '/register',
+    '/',
     [
+
         check('email', 'Please include a valid email').isEmail(),
         check(
             'password',

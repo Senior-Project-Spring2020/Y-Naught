@@ -1,10 +1,11 @@
-.header {
+/* .header {
     background: black;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     padding: 1%;
 }
+l
 
 .nav-logo {
     display:flex;
@@ -33,5 +34,61 @@
 
 .nav-link:hover {
     background-color: pink;
+} */
+
+.header{
+    width: 100%;
+    padding:0;
+    margin:0;
 }
 
+/* .navbar-head{
+    color: red;
+} */
+
+/* .navbar-custom{
+    background-color: white;
+}
+
+.navbar-custom .navbar-brand, 
+.navbar-custom .navbar-text { 
+    color: green; 
+}  */
+
+.navbar .navbar-brand {
+    color: #ecf0f1;
+  }
+  .navbar .navbar-brand:hover,
+  .navbar .navbar-brand:focus {
+    color: #ffbbbc;
+  }
+  .navbar .navbar-text {
+    color: #ecf0f1;
+  }
+  .navbar .navbar-text a {
+    color: #ffbbbc;
+  }
+  .navbar .navbar-text a:hover,
+  .navbar .navbar-text a:focus {
+    color: #ffbbbc; 
+  }
+  .navbar .navbar-nav .nav-link {
+    color: #ecf0f1;
+    border-radius: .25rem;
+    margin: 0 0.25em;
+  }
+
+  .logo{
+    position: relative;
+    left: -13px;
+    margin: 5px;
+  }
+
+  .navbar-head{
+    border-bottom-style: solid;
+    border-width: 2px;
+  }
+  ion-icon {
+    color: pink;
+    margin-left: 250px
+  }

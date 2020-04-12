@@ -4,18 +4,30 @@ const express = require('express'),
     { check, validationResult } = require('express-validator'),
     multer = require('multer');
 
+const multer = require("multer");
+const storage = multer.diskStorage({
+    destination: function(req,file,cb){
+        cb(null, './uploads/');
+    },
+    filename: function(req,file,cb){
+        cb(null,new Date().toISOString() + file.originalname);
+    }
+});
+const upload = multer({storage: storage});
 // @route   POST /Products
 // @desc    Create new product or update existing
 // @access  Public
-
+//Multer image 
+ 
 router.post('/:id?', [
     check('name', 'Name is required')
         .not().isEmpty(),
     check('price', 'Price is required')
         .not().isEmpty()
-],
+],upload.single('image'),
     async (req, res) => {
         const errors = validationResult(req);
+        console.log(req.file);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
@@ -29,27 +41,23 @@ router.post('/:id?', [
             width,
             lngth,
             description,
-            imageName,
-            imageData,
-            available,
-            quantity
         } = req.body;
 
+        const image = req.file;
         //Build product object
 
         const productFields = {};
         productFields.name = name;
         productFields.price = price;
+        if(image) productFields.image = image;
         if (size) productFields.size = size;
         if (brand) productFields.brand = brand;
         if (era) productFields.era = era;
         if (width) productFields.width = width;
         if (lngth) productFields.lngth = lngth;
         if (description) productFields.description = description;
-        if (imageData) productFields.imageData = imageData;
-        if (imageName) productFields.imageName = imageName;
-        if(available) productFields.available = available;
-        if(quantity) productFields.quantity = quantity;
+
+
         try {
 
             let product = await Product.findOne({ _id: req.params.id });
@@ -125,29 +133,4 @@ router.delete('/:product_id', async (req, res) => {
     }
 });
 
-/*MiddleWare for image upload */
-const storage = multer.diskStorage({
-    destination: (req,file,cb) =>{
-        cb(null,'./uplads/');
-    },
-    filename: (req,file,cb) => {
-        cb(null,Date.now() + file.originalname);
-    }
-});
-
-fileFilter = (feq,file,cb) => {
-    if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png'){
-        cb(null,true);
-    } else{
-        cb(null,false);
-    }
-};
-
-const upload = multer({
-    storage: storage,
-    limits: {
-        fileSize: 1024 * 1024 * 5
-    },
-    fileFilter: fileFilter
-});
 module.exports = router;
