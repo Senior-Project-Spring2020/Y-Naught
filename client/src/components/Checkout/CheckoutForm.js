@@ -21,7 +21,7 @@ export default function CheckoutForm() {
       return;
     }
 
-    const result = await stripe.confirmCardPayment('{SECRET_KEY}'', {
+    const result = await stripe.confirmCardPayment('{SECRET_KEY}', {
       payment_method: {
         card: elements.getElement(CardElement),
       },
