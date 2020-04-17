@@ -16,20 +16,21 @@ export default function(state = initialState, action) {
 				...state,
 				product: payload,
 				loading: false
-			};
-		case GET_PRODUCTS:
-			return {
-				...state,
-				products: payload,
-				loading: false
-			};
-		case PRODUCT_ERROR:
-			return {
-				...state,
-				error: payload,
-				loading: false
-			};
-		default:
-			return state;
-	}
+            };
+        case GET_PRODUCTS:
+            return {
+                ...state,
+                products: payload,
+                loading: false
+            }
+        case PRODUCT_ERROR:
+            return{
+                ...state,
+                error: payload,
+                loading: false
+            };
+        default:
+            return state;
+        }
+        
 }

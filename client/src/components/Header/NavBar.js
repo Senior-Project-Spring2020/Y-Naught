@@ -13,11 +13,19 @@ import logo from '../../assets/Y-Naught_BlckOutline.png';
 const NavBar = ({ auth: { isAuthenticated, loading,}, logout}) => {
 
     const authLinks = (
-        <Nav className="mr-auto">
+        <Nav className="mr-auto stick-right">
             <Nav.Link href="/createproduct">Create Product</Nav.Link>
             <Nav.Link onClick={logout} href="#!">Logout</Nav.Link>
         </Nav>
     );
+
+    const guestLinks = (
+        <Nav className="navbar-right">
+            <Nav.Link href="/login">Login</Nav.Link> 
+            <Nav.Link href="/register">Register</Nav.Link>
+        </Nav>
+    );
+
     return (
         <div className="header">
             <Container className="navbar-head">

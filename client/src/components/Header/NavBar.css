@@ -1,60 +1,8 @@
-/* .header {
-    background: black;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    padding: 1%;
-}
-l
-
-.nav-logo {
-    display:flex;
-    height: 50px;
-    width: 50px;
-    padding: 10%;
-}
-
-.nav-logo:hover {
-
-}
-
-.nav-items {
-    display:flex;
-    margin-left: auto;
-    margin-right: 5%;
-    align-items: center;
-}
-
-.nav-link {
-    color: white;
-    padding: 14px 25px;
-    text-align: center;
-    text-decoration: none;
-}
-
-.nav-link:hover {
-    background-color: pink;
-} */
-
 .header{
     width: 100%;
     padding:0;
     margin:0;
 }
-
-/* .navbar-head{
-    color: red;
-} */
-
-/* .navbar-custom{
-    background-color: white;
-}
-
-.navbar-custom .navbar-brand, 
-.navbar-custom .navbar-text { 
-    color: green; 
-}  */
-
 .navbar .navbar-brand {
     color: #ecf0f1;
   }
@@ -88,7 +36,8 @@ l
     border-bottom-style: solid;
     border-width: 2px;
   }
-  ion-icon {
-    color: pink;
-    margin-left: 250px
+
+  .stick-right{
+    /* width: 250px; */
+    float: right;
   }
