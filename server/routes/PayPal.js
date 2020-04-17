@@ -1,14 +1,15 @@
 const express = require('express'),
     router = express.Router(),
-    paypal = require('paypal-rest-sdk');
+    paypal = require('paypal-rest-sdk'),
+    config = require('config');
 
 paypal.configure({
     'mode': 'sandbox',
-    'cient_id': 'ASsDxAJfHYPXuDie7OiVOmbMB22e8gm9G1J_8eVHRXagDY-aL6vzp8E1crx3dOjpB4stGRaWlRmof5dW',
+    'cient_id': config.get('SECRET_KEY'),
     'client_secret':'EC7jrPOsiYjG7Dg9HrtSzT7Erbl1B0Dpw68zEMeytwqIxGHSuV6p7-jwIf-L6H9divwNVZtS27YuD69f'
 });
 
-router.post('/', (req,res) => {
+router.post('/payment', (req,res) => {
     const create_payment_json = {
         "intent": "sale",
         "payer": {

@@ -7,7 +7,6 @@ const config = require('config');
 const { check, validationResult } = require('express-validator');
 const User = require('../models/UserSchema');
 const Admin = require('../models/AdminSchema');
-var bodyParser = require('body-parser');
 
 
 // @route    GET api/auth

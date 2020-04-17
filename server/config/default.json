@@ -1,7 +1,4 @@
 {
-<<<<<<< HEAD
-    "jwtSecret": "mysecrettoken"
-=======
-   "jwtSecret": "mysecrettoken"
->>>>>>> cart
+   "jwtSecret": "mysecrettoken",
+   "SECRET_KEY":  "sk_test_7DvpDhNez8X4Xn5ZMKfcpRgo00qS2MvMuw"
 }

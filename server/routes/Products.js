@@ -4,7 +4,6 @@ const express = require('express'),
     { check, validationResult } = require('express-validator'),
     multer = require('multer');
 
-const multer = require("multer");
 const storage = multer.diskStorage({
     destination: function(req,file,cb){
         cb(null, './uploads/');
@@ -17,7 +16,6 @@ const upload = multer({storage: storage});
 // @route   POST /Products
 // @desc    Create new product or update existing
 // @access  Public
-//Multer image 
  
 router.post('/:id?', [
     check('name', 'Name is required')
