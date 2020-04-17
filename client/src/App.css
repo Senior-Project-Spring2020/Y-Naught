@@ -1,6 +1,6 @@
 /* Global Styles */
 :root {
-    --primary-color: #17a2b8;
+    --primary-color: #000000;
     --dark-color: #343a40;
     --light-color: #f4f4f4;
     --danger-color: #dc3545;
@@ -13,6 +13,10 @@
     padding: 0;
   }
   
+  .head1{
+    margin: 30px 20px;
+  }
+
   body {
     font-family: 'Raleway', sans-serif;
     font-size: 1rem;
@@ -30,9 +34,9 @@
     list-style: none;
   }
   
-  img {
+  /* img {
     width: 100%;
-  }
+  } */
   
   /* Utilities */
   .container {
@@ -130,11 +134,11 @@
     display: inline-block;
     background: var(--light-color);
     color: #333;
-    padding: 0.4rem 1.3rem;
+    /* padding: 0.4rem 1.3rem; */
     font-size: 1rem;
     border: none;
     cursor: pointer;
-    margin-right: 0.5rem;
+    margin: 20px 50px;
     transition: opacity 0.2s ease-in;
     outline: none;
   }
@@ -236,7 +240,7 @@
   
   /* Forms */
   .form .form-group {
-    margin: 1.2rem 0;
+    margin: 30px 60px;
   }
   
   .form .form-text {
@@ -299,7 +303,7 @@
   }
   
   /* Navbar */
-  .navbar {
+  /* .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -310,13 +314,13 @@
     top: 0;
     border-bottom: solid 1px var(--primary-color);
     opacity: 0.9;
-  }
+  } */
   
-  .navbar ul {
+  /* .navbar ul {
     display: flex;
-  }
+  } */
   
-  .navbar a {
+  /* .navbar a {
     color: #fff;
     padding: 0.45rem;
     margin: 0 0.25rem;
@@ -328,14 +332,8 @@
   
   .navbar .welcome span {
     margin-right: 0.6rem;
-  }
+  } */
   
-  /* Landing Page */
-  .landing {
-    position: relative;
-    background: url('../img/showcase.jpg') no-repeat center center/cover;
-    height: 100vh;
-  }
   
   .landing-inner {
     color: #fff;
@@ -380,10 +378,10 @@
     text-align: center;
   }
   
-  .profile-top img {
+  /* .profile-top img {
     width: 250px;
   }
-  
+   */
   .profile-top .icons a {
     color: #fff;
     margin: 0 0.3rem;
@@ -470,9 +468,9 @@
     text-align: center;
   }
   
-  .post img {
+  /* .post img {
     width: 100px;
-  }
+  } */
   
   .post .comment-count {
     background: var(--light-color);
@@ -542,11 +540,11 @@
   
     /* Profile Page */
   
-    .profile-top img,
+    /* .profile-top img,
     .profile img {
       width: 200px;
       margin: auto;
-    }
+    } */
   
     .profile-grid {
       grid-template-areas:

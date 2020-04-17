@@ -8,12 +8,14 @@ const ProductItem = ({
   product: {
     name,
     price,
-    imageData
+    image
   }
 }) => {
   return (
     <Col className="products">
-        <img src= {card} alt="1" width="175" height="auto"/>
+        <a href="/home">
+          <img src= {image} alt="1" width="175" height="auto"/>
+        </a>
         <figcaption>{name}</figcaption>
         <figcaption>${price}</figcaption>
     </Col>   

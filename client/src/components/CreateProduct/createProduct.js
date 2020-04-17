@@ -15,8 +15,7 @@ const CreateProduct = ({ product, history }) => {
         width: '',
         lngth: '',
         description: '',
-        imageName: '',
-        imageData: '',
+        image: '',
         available: '',
         quantity: ''
     });
@@ -30,8 +29,7 @@ const CreateProduct = ({ product, history }) => {
         width,
         lngth,
         description,
-        imageName,
-        imageData,
+        image,
         available,
         quantity
     } = formData;
@@ -131,9 +129,9 @@ return(
         </div>
         <div>
             <input type="file" 
-            placeholder="imageData"
-            name="imageData"
-            value={imageData}
+            placeholder="image"
+            name="image"
+            value={image}
             onChange={e => onChange(e)}
             />
         </div>

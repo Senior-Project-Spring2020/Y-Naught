@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import './Home.css';
 import Carousel from 'react-bootstrap/Carousel';
 import logo from '../../assets/Y-Naught_Square.png'
+import AutoPlayCarousel from '../ItemCarousel/itemCarousel';
 
 function Home() {
     return (
+        <Fragment>
         <Carousel className="carousel-box">
             <Carousel.Item>
                 <img
@@ -43,6 +45,10 @@ function Home() {
             </Carousel.Item>
         </Carousel>
 
+        <AutoPlayCarousel>
+            <h1>HERE</h1>
+        </AutoPlayCarousel>
+        </Fragment>
     );
 }
 

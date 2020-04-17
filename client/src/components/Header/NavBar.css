@@ -89,3 +89,8 @@
     border-bottom-style: solid;
     border-width: 2px;
   }
+
+  .stick-right{
+    /* width: 250px; */
+    float: right;
+  }

@@ -28,9 +28,9 @@ const Login = ({setAlert, login, isAuthenticated }) => {
 
     return(
     <Fragment>
-        <h1 className="large text-primary">Sign In</h1>
+        <h1 className="large text-primary head1">Sign In</h1>
         <form className="form" onSubmit={e => onSubmit(e)}>
-            <div className="login-group">
+            <div className="form-group">
             <input 
                 type="email" 
                 placeholder="Email Address" 
