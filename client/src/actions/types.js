@@ -17,3 +17,8 @@ export const LOGOUT = 'LOGOUT';
 export const GET_PRODUCT = 'GET_PRODUCT';
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const PRODUCT_ERROR = 'PRODUCT_ERROR';
+
+//Cart
+export const ADD_CART_ITEM= "ADD_CART_ITEM";
+export const REMOVE_CART_ITEM = "REMOVE_CART_ITEM";
+export const GET_CART = "GET_CART";

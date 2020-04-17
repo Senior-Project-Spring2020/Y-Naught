@@ -40,14 +40,6 @@ function Home() {
 					className='center'
 				></img>
 
-<<<<<<< HEAD
-				<Carousel.Caption>
-					<h3>Third slide label</h3>
-				</Carousel.Caption>
-			</Carousel.Item>
-		</Carousel>
-	);
-=======
                 <Carousel.Caption>
                 <h3>Third slide label</h3>
                 </Carousel.Caption>
@@ -59,7 +51,6 @@ function Home() {
         </AutoPlayCarousel>
         </Fragment>
     );
->>>>>>> Homepage
 }
 
 export default Home;
