@@ -1,60 +1,79 @@
 const cors = require("cors");
 const express = require("express");
-const stripe = require("stripe")("SECRET_KEY"); //Need to add this file to .gitignore for this
-const uuid = require("uuid/v4");
-const config = require('config');
-
+const stripe = require("stripe")(process.env.SECRET_KEY);
 const app = express();
+const { resolve } = require("path");
 
-app.use(express.json());
-app.use(cors());
+//Provided from from Stripe Website
 
-app.get("/", (req, res) => {
-  res.send("Add your Stripe Secret Key to the .require('stripe') statement!");
+app.use(
+  express.json({
+    verify: function(req, res, buf) {
+      if (req.originalUrl.startsWith("/webhook")) {
+        req.rawBody = buf.toString();
+      }
+    }
+  })
+);
+
+app.get("/checkout", (req, res) => {
+  res.sendFile(path);
 });
 
-app.post("/checkout", async (req, res) => {
-  console.log("Request:", req.body);
 
-  let error;
-  let status;
-  try {
-    const { product, token } = req.body;
+app.post("/create-payment-intent", async (req, res) => {
+  const { items, currency } = req.body;
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: 25,
+    currency: currency
+  });
 
-    const customer = await stripe.customers.create({
-      email: token.email,
-      source: token.id
-    });
+  // Send publishable key and PaymentIntent details to client
+  res.send({
+    publishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
+    clientSecret: paymentIntent.client_secret
+  });
+});
 
-    const idempotency_key = uuid(); //unique string to make sure customer is not charged twice
-    const charge = await stripe.charges.create(
-      {
-        amount: product.price * 100,
-        currency: "usd",
-        customer: customer.id,
-        receipt_email: token.email,
-        description: `Purchased the ${product.name}`,
-        shipping: {
-          name: token.card.name,
-          address: {
-            line1: token.card.address_line1,
-            line2: token.card.address_line2,
-            city: token.card.address_city,
-            country: token.card.address_country,
-            postal_code: token.card.address_zip
-          }
-        }
-      },
-      {
-        idempotency_key
-      }
-    );
-    console.log("Charge:", { charge });
-    status = "success";
-  } catch (error) {
-    console.error("Error:", error);
-    status = "failure";
+// Expose a endpoint as a webhook handler for asynchronous events.
+// Configure your webhook in the stripe developer dashboard
+// https://dashboard.stripe.com/test/webhooks
+app.post("/webhook", async (req, res) => {
+  let data, eventType;
+
+  // Check if webhook signing is configured.
+  if (process.env.STRIPE_WEBHOOK_SECRET) {
+    // Retrieve the event by verifying the signature using the raw body and secret.
+    let event;
+    let signature = req.headers["stripe-signature"];
+    try {
+      event = stripe.webhooks.constructEvent(
+        req.rawBody,
+        signature,
+        process.env.STRIPE_WEBHOOK_SECRET
+      );
+    } catch (err) {
+      console.log(`⚠️  Webhook signature verification failed.`);
+      return res.sendStatus(400);
+    }
+    data = event.data;
+    eventType = event.type;
+  } else {
+    // Webhook signing is recommended, but if the secret is not configured in `config.js`,
+    // we can retrieve the event data directly from the request body.
+    data = req.body.data;
+    eventType = req.body.type;
   }
 
-  res.json({ error, status });
+  if (eventType === "payment_intent.succeeded") {
+    // Funds have been captured
+    // Fulfill any orders, e-mail receipts, etc
+    // To cancel the payment after capture you will need to issue a Refund (https://stripe.com/docs/api/refunds)
+    console.log("💰 Payment captured!");
+  } else if (eventType === "payment_intent.payment_failed") {
+    console.log("❌ Payment failed.");
+  }
+  res.sendStatus(200);
 });
+
+module.exports = app;

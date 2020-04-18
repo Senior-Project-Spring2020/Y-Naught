@@ -5,7 +5,9 @@ const path = require('path'),
     bodyParser = require('body-parser'),
     products = require('../routes/Products'),
     auth = require('../routes/auth'),
-    users = require('../routes/Users');
+    users = require('../routes/Users'),
+    paypal = require('../routes/PayPal'),
+    stripe = require('../routes/Stripe');
 
 module.exports.init = () => {
 
@@ -38,6 +40,8 @@ module.exports.init = () => {
     app.use('/products', products);
     app.use('/auth', auth);
     app.use('/users', users);
+    app.use('/', stripe);
+    app.use('/', paypal);
 
     if (process.env.NODE_ENV === 'production') {
         // Serve any static files

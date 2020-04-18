@@ -11,11 +11,12 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Checkout from "../Checkout/Checkout";
+import CloseIcon from '@material-ui/icons/Close';
 
 class Cart extends Component {
   constructor(props) {
     super(props);
-    this.handleClickClose = this.handleClickClose.bind(this); 
+    this.handleClickClose = this.handleClickClose.bind(this);
     this.handleClickOpen = this.handleClickOpen.bind(this);
     this.state = {
 
@@ -35,7 +36,7 @@ class Cart extends Component {
     });
   }
 
-  //Handle popup close message
+
   handleClickClose = () => {
     this.setState({
       setOpen: false,
@@ -43,8 +44,7 @@ class Cart extends Component {
   }
 
   render() {
-    const { cart, loading } = this.props.cart;
-    const { itemInCart } = this.props;
+    const { cart } = this.props.cart;
 
     let cartContent;
 
@@ -58,7 +58,7 @@ class Cart extends Component {
       <div className="product-container" >
         <div>{cartContent}</div>
         <div className="checkout-button">
-        <Button color="secondary" variant="contained" onClick={this.handleClickOpen}>Checkout</Button>
+          <Button color="secondary" variant="contained" onClick={this.handleClickOpen}>Checkout</Button>
         </div>
         <Dialog
           open={this.state.setOpen}
@@ -67,13 +67,14 @@ class Cart extends Component {
           aria-describedby="alert-dialog-description"
           unmountOnExit
         >
+          <DialogActions>
+            <Button size="small" onClick={this.handleClickClose} color="primary"><CloseIcon /> </Button>
+          </DialogActions>
           <DialogTitle id="alert-dialog-title">{"Payment"}</DialogTitle>
           <DialogContent>
             <Checkout />
           </DialogContent>
-          <DialogActions>
-            <Button size="small" onClick={this.handleClickClose} color="primary">Back</Button>
-          </DialogActions>
+
         </Dialog>
       </div>
     )
