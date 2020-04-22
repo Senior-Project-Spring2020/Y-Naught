@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -15,7 +15,6 @@ const CreateProduct = ({ product, history }) => {
         width: '',
         lngth: '',
         description: '',
-        image: '',
         available: '',
         quantity: ''
     });
@@ -29,7 +28,6 @@ const CreateProduct = ({ product, history }) => {
         width,
         lngth,
         description,
-        image,
         available,
         quantity
     } = formData;
@@ -44,8 +42,6 @@ const CreateProduct = ({ product, history }) => {
     };
 
 return(
-    //<Fragment>
-       // <h1 className="large text-primary">Create Product</h1>
       <Form className="form" onSubmit={e => onSubmit(e)}>
         <Form.Group controlId="formBasicEmail">
             <Form.Label>Item Name</Form.Label>
@@ -128,17 +124,8 @@ return(
             onChange={e => onChange(e)}
           />
         </div>
-        <div>
-            <input type="file" 
-            placeholder="image"
-            name="image"
-            value={image}
-            onChange={e => onChange(e)}
-            />
-        </div>
         <input type="submit" className="btn btn-primary" value="Create Product" />
       </Form>
-    //</Fragment>
 );
 };
 

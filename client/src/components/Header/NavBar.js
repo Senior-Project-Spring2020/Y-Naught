@@ -1,5 +1,4 @@
 import React, { Fragment, useEffect } from 'react';
-//import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
@@ -8,8 +7,6 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Navbar';
 import logo from '../../assets/Y-Naught_BlckOutline.png';
-// import NavLink from 'react-bootstrap/NavLink';
-
 const NavBar = ({ auth: { isAuthenticated, loading,}, logout}) => {
 
     const authLinks = (
@@ -19,12 +16,12 @@ const NavBar = ({ auth: { isAuthenticated, loading,}, logout}) => {
         </Nav>
     );
 
-    const guestLinks = (
-        <Nav className="navbar-right">
-            <Nav.Link href="/login">Login</Nav.Link> 
-            <Nav.Link href="/register">Register</Nav.Link>
-        </Nav>
-    );
+    // const guestLinks = (
+    //     <Nav className="navbar-right">
+    //         <Nav.Link href="/login">Login</Nav.Link> 
+    //         <Nav.Link href="/register">Register</Nav.Link>
+    //     </Nav>
+    // );
 
     return (
         <div className="header">
@@ -38,12 +35,10 @@ const NavBar = ({ auth: { isAuthenticated, loading,}, logout}) => {
                         <Nav.Link href="/home">Home</Nav.Link>
                         <Nav.Link href="/about">About</Nav.Link>
                         <Nav.Link href="/products">Products</Nav.Link>
-                        <Nav.Link href="/lookbook">Lookbook</Nav.Link>
+                        {/* <Nav.Link href="/lookbook">Lookbook</Nav.Link> */}
                         {/* <Nav.Link href="/login">Login</Nav.Link> 
                         <Nav.Link href="/register">Register</Nav.Link> */}
-                        {/* <Nav.Link href="/createproduct">Create Product</Nav.Link> */}
                         {!loading && (<Fragment>{isAuthenticated ? authLinks : null}</Fragment>)}
-
                     </Nav>
                     <Nav.Link href="/cart">
                     <ion-icon name="cart-outline" size="large"></ion-icon>

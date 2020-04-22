@@ -15,9 +15,6 @@ function Home() {
                 width="400" height="400"
                 className="center"
                 ></img>
-                <Carousel.Caption>
-                <h3>First slide label</h3>
-                </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
                 <img
@@ -26,10 +23,6 @@ function Home() {
                 width="400" height="400"
                 className="center"
                 ></img>
-
-				<Carousel.Caption>
-					<h3>Second slide label</h3>
-				</Carousel.Caption>
 			</Carousel.Item>
 			<Carousel.Item>
 				<img
@@ -39,10 +32,6 @@ function Home() {
 					height='400'
 					className='center'
 				></img>
-
-                <Carousel.Caption>
-                <h3>Third slide label</h3>
-                </Carousel.Caption>
             </Carousel.Item>
         </Carousel>
 

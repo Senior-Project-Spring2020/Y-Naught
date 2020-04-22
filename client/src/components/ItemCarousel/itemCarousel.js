@@ -2,12 +2,15 @@ import React from 'react';
 import range from 'lodash/range';
 import styled from 'styled-components';
 import ItemsCarousel from 'react-items-carousel';
-
-const noOfItems = 12;
+import { Button } from '@material-ui/core';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import IconButton from '@material-ui/core/IconButton';
+import './itemCarousel.css';
+const noOfItems = 7;
 const noOfCards = 3;
 const autoPlayDelay = 2000;
 const chevronWidth = 40;
-
 const Wrapper = styled.div`
   padding: 0 ${chevronWidth}px;
   max-width: 1000px;
@@ -26,7 +29,7 @@ const SlideItem = styled.div`
 
 const carouselItems = range(noOfItems).map(index => (
   <SlideItem key={index}>
-    {index+1}
+    {index + 1}
   </SlideItem>
 ));
 
@@ -44,7 +47,7 @@ export default class AutoPlayCarousel extends React.Component {
   }
 
   tick = () => this.setState(prevState => ({
-    activeItemIndex: (prevState.activeItemIndex + 1) % (noOfItems-noOfCards + 1),
+    activeItemIndex: (prevState.activeItemIndex + 1) % (noOfItems - noOfCards + 1),
   }));
 
   onChange = value => this.setState({ activeItemIndex: value });
@@ -57,8 +60,8 @@ export default class AutoPlayCarousel extends React.Component {
           numberOfCards={noOfCards}
           activeItemIndex={this.state.activeItemIndex}
           requestToChangeActive={this.onChange}
-          rightChevron={<button>{'>'}</button>}
-          leftChevron={<button>{'<'}</button>}
+          rightChevron={<IconButton className="button-css" size="medium"><ChevronRightIcon fontSize="inherit" /></IconButton>}
+          leftChevron={<IconButton className="button-css" size="medium"><ChevronLeftIcon fontSize="inherit" /></IconButton>}
           chevronWidth={chevronWidth}
           outsideChevron
           children={carouselItems}
