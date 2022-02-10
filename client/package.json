@@ -16,7 +16,7 @@
     "lodash": "^4.17.15",
     "material-ui-icons": "^1.0.0-beta.36",
     "moment": "^2.24.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "parcel": "^1.12.4",
     "parcel-bundler": "^1.12.4",
     "react": "^16.13.0",
